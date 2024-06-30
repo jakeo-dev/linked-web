@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .fadeIn {
+    @apply invisible opacity-0 transition-all;
+  }
+
+  .fadeOut {
+    @apply visible opacity-100 transition-all;
+  }
+}
