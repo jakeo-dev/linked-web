@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Button from "../components/Button";
+import Link from "next/link";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowCircleDown,
   faArrowRight,
   faArrowRotateRight,
   faCircleQuestion,
@@ -294,7 +296,7 @@ export default function Home() {
       <div
         className={`bg-black/50 flex items-center justify-center absolute top-0 left-0 h-screen w-full z-10 px-6 ${howPlayVisible}`}
       >
-        <div className="bg-gray-100 w-[40rem] rounded-lg px-10 py-8">
+        <div className="bg-gray-100 w-[36rem] rounded-lg px-10 py-8">
           <h1 className="text-2xl">How to Play</h1>
           <p className="text-lg mt-3">
             • Link five words together by their first and last letter.
@@ -333,7 +335,7 @@ export default function Home() {
       <div
         className={`bg-black/50 flex items-center justify-center absolute top-0 left-0 h-screen w-full z-10 px-6 ${solvedVisible}`}
       >
-        <div className="bg-gray-100 w-[40rem] rounded-lg px-10 py-8">
+        <div className="bg-gray-100 w-[36rem] rounded-lg px-10 py-8">
           <h1 className="text-2xl">You've linked all the words!</h1>
           <p className="text-lg whitespace-pre-wrap mt-3">{shareText}</p>
           <div className="flex gap-4 mt-6">
@@ -381,6 +383,16 @@ export default function Home() {
                 aria-label="Reveal answers"
               />
             </button> */}
+            <Link
+              href="/mobile"
+              target="_blank"
+              className="text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
+            >
+              <FontAwesomeIcon
+                icon={faArrowCircleDown}
+                aria-label="Download app on Android"
+              />
+            </Link>
             <button
               onClick={clickHowPlay}
               className="text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
