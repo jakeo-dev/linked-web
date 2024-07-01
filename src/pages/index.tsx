@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
@@ -386,7 +386,7 @@ export default function Home() {
             <h1 className="text-3xl text-white font-semibold pt-1">Linked</h1>
           </div>
           <div className="flex gap-4 justify-center items-center ml-auto">
-            <button
+            {/* <button
               onClick={() => {
                 alert("answer!!!!!: " + solvedWordsArray);
               }}
@@ -396,7 +396,7 @@ export default function Home() {
                 icon={faFaceSurprise}
                 aria-label="Reveal answers"
               />
-            </button>
+            </button> */}
             <Link
               href="/mobile"
               target="_blank"
@@ -568,7 +568,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("a") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>a</span>
             </Button>
@@ -578,7 +578,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("b") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>b</span>
             </Button>
@@ -588,7 +588,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("c") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>c</span>
             </Button>
@@ -598,7 +598,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("d") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>d</span>
             </Button>
@@ -608,7 +608,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("e") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>e</span>
             </Button>
@@ -618,7 +618,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("f") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>f</span>
             </Button>
@@ -628,7 +628,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("g") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>g</span>
             </Button>
@@ -638,7 +638,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("h") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>h</span>
             </Button>
@@ -648,7 +648,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("i") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>i</span>
             </Button>
@@ -658,7 +658,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("j") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>j</span>
             </Button>
@@ -668,7 +668,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("k") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>k</span>
             </Button>
@@ -678,7 +678,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("l") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>l</span>
             </Button>
@@ -688,7 +688,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("m") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>m</span>
             </Button>
@@ -698,7 +698,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("n") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>n</span>
             </Button>
@@ -708,7 +708,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("o") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>o</span>
             </Button>
@@ -718,7 +718,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("p") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>p</span>
             </Button>
@@ -728,7 +728,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("q") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>q</span>
             </Button>
@@ -738,7 +738,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("r") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>r</span>
             </Button>
@@ -748,7 +748,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("s") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>s</span>
             </Button>
@@ -758,7 +758,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("t") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>t</span>
             </Button>
@@ -768,7 +768,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("u") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>u</span>
             </Button>
@@ -778,7 +778,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("v") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>v</span>
             </Button>
@@ -788,7 +788,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("w") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>w</span>
             </Button>
@@ -798,7 +798,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("x") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>x</span>
             </Button>
@@ -808,7 +808,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("y") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>y</span>
             </Button>
@@ -818,7 +818,7 @@ export default function Home() {
               }}
               className={`${
                 isThisInGivenLetters("z") ? "" : "hidden"
-              } w-9 h-11`}
+              } w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>z</span>
             </Button>
