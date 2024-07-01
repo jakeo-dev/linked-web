@@ -386,17 +386,17 @@ export default function Home() {
             <h1 className="text-3xl text-white font-semibold pt-1">Linked</h1>
           </div>
           <div className="flex gap-4 justify-center items-center ml-auto">
-            {/* <button
+            <button
               onClick={() => {
                 alert("answer!!!!!: " + solvedWordsArray);
               }}
-              className=" text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
+              className="hidden text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
             >
               <FontAwesomeIcon
                 icon={faFaceSurprise}
                 aria-label="Reveal answers"
               />
-            </button> */}
+            </button>
             <Link
               href="/mobile"
               target="_blank"
@@ -546,7 +546,7 @@ export default function Home() {
               {startLetter}
             </span>
             <input
-              className="text-3xl md:text-4xl tracking-widest bg-transparent caret-transparent outline-none leading-10 ml-2.5"
+              className="hidden md:block text-3xl md:text-4xl tracking-widest bg-transparent caret-transparent outline-none leading-10 ml-2.5"
               onChange={(e) => {
                 if (e.target.value > inputValue) setInputValue(e.target.value);
               }}
@@ -559,9 +559,12 @@ export default function Home() {
               ref={inputRef}
               autoFocus
             />
+            <span className="md:hidden text-3xl md:text-4xl tracking-widest bg-transparent caret-transparent outline-none leading-10 ml-2.5">
+              {inputValue}
+            </span>
           </div>
           {/* keyboard */}
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex flex-wrap justify-center items-center gap-2">
             <Button
               onClick={() => {
                 setInputValue(inputValue + "a");
