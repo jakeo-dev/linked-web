@@ -376,7 +376,7 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center items-center">
-        <div className="flex border-b-2 border-gray-300 w-full md:w-[44rem] px-4 pb-8 mb-12">
+        <div className="flex border-b-2 border-gray-300 w-full md:w-[44rem] px-2 md:px-4 pb-6 md:pb-8 mb-10 md:mb-12">
           <div className="flex">
             <Image
               className="w-10 h-10 mr-1"
@@ -427,19 +427,19 @@ export default function Home() {
       </div>
 
       <div>
-        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-10">
+        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-8 md:mb-10">
           {word4Text}
         </span>
-        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-10">
+        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-8 md:mb-10">
           {word5Text}
         </span>
-        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-10">
+        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-8 md:mb-10">
           {word6Text}
         </span>
-        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-10">
+        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-8 md:mb-10">
           {word7Text}
         </span>
-        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-10">
+        <span className="block text-3xl md:text-4xl text-white text-center tracking-widest mb-8 md:mb-10">
           {word8Text}
         </span>
       </div>
