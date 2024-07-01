@@ -823,10 +823,10 @@ export default function Home() {
                 isThisInGivenLetters("z") ? "" : "hidden"
               } w-9 h-11 pt-1.5`}
             >
-              <span className={`text-2xl`}>z</span>
+              <span className="text-2xl">z</span>
             </Button>
           </div>
-          <div className={`flex gap-2 mt-4`}>
+          <div className="flex gap-2 mt-4">
             <Button
               onClick={() => {
                 if (inputValue.length < 1 && currentI != 1) {
@@ -845,7 +845,12 @@ export default function Home() {
               ref={backspaceRef}
             >
               <FontAwesomeIcon icon={faDeleteLeft} className="mr-2" />
-              <span className="text-lg">Backspace</span>
+              <span className="text-lg">
+                {inputValue.length < 1 &&
+                (currentI == 2 || currentI == 3 || currentI == 4)
+                  ? "Previous word"
+                  : "Backspace"}
+              </span>
             </Button>
             <Button
               onClick={addWord}
