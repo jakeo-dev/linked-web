@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import Image from "next/image";
 import Button from "../components/Button";
 import Link from "next/link";
@@ -43,7 +43,7 @@ export default function Home() {
   const [enteredWords, setEnteredWords] = useState<string[]>([] as string[]);
 
   const [warnText, setWarnText] = useState("error");
-  const [warnVisible, setWarnVisible] = useState("hidden");
+  const [warnVisible, setWarnVisible] = useState("fadeIn");
 
   const [shareText, setShareText] = useState("");
 
@@ -150,7 +150,7 @@ export default function Home() {
 
   function setTimedWarn(text: string, time: number) {
     setWarnText(text);
-    setWarnVisible("");
+    setWarnVisible("fadeOut");
     setTimedWarnTime(time);
     setTimedWarnRunning(true);
   }
@@ -162,11 +162,25 @@ export default function Home() {
     if (timedWarnRunning) {
       timer = setTimeout(() => {
         setTimedWarnRunning(false);
-        setWarnVisible("hidden");
+        setWarnVisible("fadeIn");
       }, timedWarnTime);
     }
     return () => clearTimeout(timer);
   }, [timedWarnRunning]);
+
+  const enterRef = useRef<HTMLButtonElement>(null);
+  const backspaceRef = useRef<HTMLButtonElement>(null);
+  // when enter key is clicked, click enter button
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "Enter" && enterRef.current) {
+      enterRef.current.click();
+    } else if (event.key === "Backspace" && backspaceRef.current) {
+      backspaceRef.current.click();
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+  }, []);
 
   function addWord() {
     let trueInput = startLetter + inputValue;
@@ -225,7 +239,7 @@ export default function Home() {
       enteredWords.push(trueInput);
 
       setTimedWarnRunning(false);
-      setWarnVisible("hidden");
+      setWarnVisible("fadeIn");
 
       changingSolvedWordsArray.splice(0, 1);
 
@@ -346,7 +360,7 @@ export default function Home() {
               }}
             >
               <span className="text-lg text-center px-1.5 py-1">
-                Copy share text
+                Copy results
               </span>
             </Button>
             <Button
@@ -372,17 +386,17 @@ export default function Home() {
             <h1 className="text-3xl text-white font-semibold pt-1">Linked</h1>
           </div>
           <div className="flex gap-4 justify-center items-center ml-auto">
-            {/* <button
+            <button
               onClick={() => {
                 alert("answer!!!!!: " + solvedWordsArray);
               }}
-              className="text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
+              className=" text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
             >
               <FontAwesomeIcon
                 icon={faFaceSurprise}
                 aria-label="Reveal answers"
               />
-            </button> */}
+            </button>
             <Link
               href="/mobile"
               target="_blank"
@@ -533,7 +547,9 @@ export default function Home() {
             </span>
             <input
               className="text-3xl md:text-4xl tracking-widest bg-transparent caret-transparent outline-none leading-10 ml-2.5"
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value > inputValue) setInputValue(e.target.value);
+              }}
               value={inputValue}
               type="text"
               size={inputValue !== "" ? inputValue.length + 1 : 1}
@@ -823,11 +839,16 @@ export default function Home() {
                 }
               }}
               className="items-center w-full"
+              ref={backspaceRef}
             >
               <FontAwesomeIcon icon={faDeleteLeft} className="mr-2" />
               <span className="text-lg">Backspace</span>
             </Button>
-            <Button onClick={addWord} className="items-center w-full">
+            <Button
+              onClick={addWord}
+              className="items-center w-full"
+              ref={enterRef}
+            >
               <span className="text-lg">Enter</span>
               <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </Button>

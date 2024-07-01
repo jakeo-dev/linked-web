@@ -5,12 +5,12 @@ export default function Privacy() {
         Linked Word Game Privacy Policy
       </h1>
 
-      <p className="">
+      <p>
         No data at all is collected through the Linked Word Game app. The game
         works completely offline and no information from any users is used or
         sent anywhere. No data is stored locally on the app either.
       </p>
-      <p className="">
+      <p>
         If you still have concerns, contact{" "}
         <a
           href="mailto:hi@jakeo.dev"
