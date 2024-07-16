@@ -26,22 +26,16 @@ export default function Home() {
   <Head>
     <meta charSet="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="../../public/icon-colorless-transparent.png"
-      rel="shortcut icon"
-      type="image/ico"
-    />
+
     <title>Linked</title>
+
     <meta property="og:title" content="Linked" />
     <meta
       property="og:description"
       content="A fun and simple word puzzle game to test your brain."
     />
     <meta name="theme-color" content="#3b82f6" />
-    <meta
-      property="og:image"
-      content="../../public/icon-colorless-transparent.png"
-    />
+    <meta property="og:image" content="icon-transparent.png" />
   </Head>;
 
   const fullWordsArray = fullWordsFile;
