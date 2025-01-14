@@ -9,6 +9,7 @@ import {
   faArrowCircleDown,
   faArrowRight,
   faArrowRotateRight,
+  faArrowUpRightFromSquare,
   faCircleQuestion,
   faDeleteLeft,
   faFaceSurprise,
@@ -286,7 +287,9 @@ export default function Home() {
         className={`bg-black/50 flex items-center justify-center absolute top-0 left-0 h-screen w-full z-10 px-6 ${howPlayVisible}`}
       >
         <div className="bg-gray-100 w-[36rem] rounded-lg px-10 py-8">
-          <h1 className="text-2xl">How to Play</h1>
+          <h1 className="text-2xl font-semibold">About</h1>
+
+          <h2 className="text-xl font-medium mt-5">How to Play</h2>
           <p className="text-lg mt-3">• Link five words together by their first and last letter.</p>
           <p className="text-lg mt-1.5">
             • Come up with three words, increasing in length, with the given letters.
@@ -303,6 +306,27 @@ export default function Home() {
             • There will always be at least one possible solved state.
           </p>
           <p className="text-lg mt-1.5">• Once you link all the words, you've solved the puzzle!</p>
+
+          <h2 className="text-xl font-medium mt-5">More</h2>
+          <div className="flex text-center mt-3">
+            <a
+              className="hover:drop-shadow-md active:drop-shadow-none transition"
+              href="https://jakeo.dev"
+              target="_blank"
+            >
+              <img src="https://www.jakeo.dev/logos/bunny-jakeo-wordmark.png" className="w-20" />
+            </a>
+            <span className="mx-2">•</span>
+            <a
+              className="hover:text-blue-600 underline hover:decoration-wavy hover:decoration-1 transition-all"
+              href="https://github.com/jakeo-dev/linked-web"
+              target="_blank"
+            >
+              GitHub
+              <FontAwesomeIcon className="text-sm ml-1.5" icon={faArrowUpRightFromSquare} />
+            </a>
+          </div>
+
           <div className="flex mt-6">
             <Button
               className="w-full"
@@ -347,9 +371,11 @@ export default function Home() {
         <div className="flex border-b-2 border-gray-300 w-full md:w-[44rem] px-2 md:px-4 pb-6 md:pb-8 mb-10 md:mb-12">
           <div className="flex">
             <Image
-              className="w-10 h-10 mr-1"
-              src={require("/images/icon-colorless-transparent.png")}
+              className="mr-1"
+              src="/images/icon-colorless-transparent.png"
               alt="Linked icon"
+              width={40}
+              height={40}
             />
             <h1 className="text-3xl text-white font-semibold pt-1">Linked</h1>
           </div>
