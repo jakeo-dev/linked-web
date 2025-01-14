@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Button from "../components/Button";
+import Button from "@/components/Button";
 import Link from "next/link";
 import Head from "next/head";
 
@@ -314,10 +314,7 @@ export default function Home() {
               href="https://jakeo.dev"
               target="_blank"
             >
-              <img
-                src="https://www.jakeo.dev/logos/bunny-jakeo-wordmark.png"
-                className="w-20"
-              />
+              <img src="https://www.jakeo.dev/logos/bunny-jakeo-wordmark.png" className="w-20" />
             </a>
             <span className="mx-2">•</span>
             <a
