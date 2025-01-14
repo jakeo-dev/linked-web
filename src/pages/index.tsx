@@ -348,7 +348,7 @@ export default function Home() {
           <div className="flex">
             <Image
               className="w-10 h-10 mr-1"
-              src={require("../../public/icon-colorless-transparent.png")}
+              src={require("/images/icon-colorless-transparent.png")}
               alt="Linked icon"
             />
             <h1 className="text-3xl text-white font-semibold pt-1">Linked</h1>
