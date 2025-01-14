@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import Button from "../components/Button";
+import Button from "@/components/Button";
 import Link from "next/link";
 import Head from "next/head";
 
@@ -15,12 +15,12 @@ import {
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
 
-import fullWordsFile from "../../public/words567.json";
-import words4File from "../../public/words4.json";
-import words5File from "../../public/words5.json";
-import words6File from "../../public/words6.json";
-import words7File from "../../public/words7.json";
-import words8File from "../../public/words8.json";
+import fullWordsFile from "@/words/words567.json";
+import words4File from "@/words/words4.json";
+import words5File from "@/words/words5.json";
+import words6File from "@/words/words6.json";
+import words7File from "@/words/words7.json";
+import words8File from "@/words/words8.json";
 
 export default function Home() {
   <Head>
@@ -46,12 +46,10 @@ export default function Home() {
   const words8Array = words8File;
 
   const [lettersArray, setLettersArray] = useState<string[]>([] as string[]);
-  const [solvedWordsArray, setSolvedWordsArray] = useState<string[]>(
+  const [solvedWordsArray, setSolvedWordsArray] = useState<string[]>([] as string[]);
+  const [changingSolvedWordsArray, setChangingSolvedWordsArray] = useState<string[]>(
     [] as string[]
   );
-  const [changingSolvedWordsArray, setChangingSolvedWordsArray] = useState<
-    string[]
-  >([] as string[]);
   const [currentI, setCurrentI] = useState(1);
   const [startLetter, setStartLetter] = useState("error");
 
@@ -80,22 +78,17 @@ export default function Home() {
   while (randomWord8.charAt(0) != randomWord7.charAt(randomWord7.length - 1)) setRandomWord8(words8Array[Math.floor(Math.random() * words8Array.length)]); */
 
   useEffect(() => {
-    let randomWord4 =
-      words4Array[Math.floor(Math.random() * words4Array.length)];
-    let randomWord5 =
-      words5Array[Math.floor(Math.random() * words5Array.length)];
+    let randomWord4 = words4Array[Math.floor(Math.random() * words4Array.length)];
+    let randomWord5 = words5Array[Math.floor(Math.random() * words5Array.length)];
     while (randomWord5.charAt(0) != randomWord4.charAt(randomWord4.length - 1))
       randomWord5 = words5Array[Math.floor(Math.random() * words5Array.length)];
-    let randomWord6 =
-      words6Array[Math.floor(Math.random() * words6Array.length)];
+    let randomWord6 = words6Array[Math.floor(Math.random() * words6Array.length)];
     while (randomWord6.charAt(0) != randomWord5.charAt(randomWord5.length - 1))
       randomWord6 = words6Array[Math.floor(Math.random() * words6Array.length)];
-    let randomWord7 =
-      words7Array[Math.floor(Math.random() * words7Array.length)];
+    let randomWord7 = words7Array[Math.floor(Math.random() * words7Array.length)];
     while (randomWord7.charAt(0) != randomWord6.charAt(randomWord6.length - 1))
       randomWord7 = words7Array[Math.floor(Math.random() * words7Array.length)];
-    let randomWord8 =
-      words8Array[Math.floor(Math.random() * words8Array.length)];
+    let randomWord8 = words8Array[Math.floor(Math.random() * words8Array.length)];
     while (randomWord8.charAt(0) != randomWord7.charAt(randomWord7.length - 1))
       randomWord8 = words8Array[Math.floor(Math.random() * words8Array.length)];
 
@@ -111,20 +104,8 @@ export default function Home() {
     setWord7Text("_ _ _ _ _ _ _");
     setWord8Text(randomWord8);
 
-    setSolvedWordsArray([
-      randomWord4,
-      randomWord5,
-      randomWord6,
-      randomWord7,
-      randomWord8,
-    ]);
-    setChangingSolvedWordsArray([
-      randomWord4,
-      randomWord5,
-      randomWord6,
-      randomWord7,
-      randomWord8,
-    ]);
+    setSolvedWordsArray([randomWord4, randomWord5, randomWord6, randomWord7, randomWord8]);
+    setChangingSolvedWordsArray([randomWord4, randomWord5, randomWord6, randomWord7, randomWord8]);
     const allWords =
       randomWord4.charAt(randomWord4.length - 1) +
       randomWord5 +
@@ -231,25 +212,13 @@ export default function Home() {
     }
 
     if (trueInput.charAt(0) != startLetter) {
-      setTimedWarn(
-        "Word must begin with the letter " + startLetter.toUpperCase(),
-        3500
-      );
+      setTimedWarn("Word must begin with the letter " + startLetter.toUpperCase(), 3500);
     } else if (trueInput.length != solvedWordsArray[currentI].length) {
-      setTimedWarn(
-        "Word must be " + solvedWordsArray[currentI].length + " letters long",
-        3500
-      );
+      setTimedWarn("Word must be " + solvedWordsArray[currentI].length + " letters long", 3500);
     } else if (!inWordList) {
       setTimedWarn("Not in word list", 3500);
-    } else if (
-      currentI >= 3 &&
-      trueInput.charAt(trueInput.length - 1) != word8Text.charAt(0)
-    ) {
-      setTimedWarn(
-        "Word must end with the letter " + word8Text.charAt(0).toUpperCase(),
-        3500
-      );
+    } else if (currentI >= 3 && trueInput.charAt(trueInput.length - 1) != word8Text.charAt(0)) {
+      setTimedWarn("Word must end with the letter " + word8Text.charAt(0).toUpperCase(), 3500);
     } else if (containsUnallowedLetters) {
       setTimedWarn("Word contains letters that are not allowed", 3500);
     } else {
@@ -274,10 +243,7 @@ export default function Home() {
       } else {
         enteredWords.unshift(solvedWordsArray[0]);
         enteredWords.push(solvedWordsArray[solvedWordsArray.length - 1]);
-        setShareText(
-          "Linked Word Game\nhttps://linked.jakeo.dev\n" +
-            enteredWords.join(" ➡️ ")
-        );
+        setShareText("Linked Word Game\nhttps://linked.jakeo.dev\n" + enteredWords.join(" ➡️ "));
         setSolvedVisible("fadeOut");
         setShareBtnVisible("");
         setKeyboardVisible("hidden");
@@ -321,27 +287,22 @@ export default function Home() {
       >
         <div className="bg-gray-100 w-[36rem] rounded-lg px-10 py-8">
           <h1 className="text-2xl">How to Play</h1>
-          <p className="text-lg mt-3">
-            • Link five words together by their first and last letter.
+          <p className="text-lg mt-3">• Link five words together by their first and last letter.</p>
+          <p className="text-lg mt-1.5">
+            • Come up with three words, increasing in length, with the given letters.
           </p>
           <p className="text-lg mt-1.5">
-            • Come up with three words, increasing in length, with the given
-            letters.
+            • Any word can be used, as long as it fits the length and begins with the last letter of
+            the previous word.
           </p>
           <p className="text-lg mt-1.5">
-            • Any word can be used, as long as it fits the length and begins
-            with the last letter of the previous word.
-          </p>
-          <p className="text-lg mt-1.5">
-            • The last letter of the last word that you enter must be the first
-            letter of the last given word.
+            • The last letter of the last word that you enter must be the first letter of the last
+            given word.
           </p>
           <p className="text-lg mt-1.5">
             • There will always be at least one possible solved state.
           </p>
-          <p className="text-lg mt-1.5">
-            • Once you link all the words, you've solved the puzzle!
-          </p>
+          <p className="text-lg mt-1.5">• Once you link all the words, you've solved the puzzle!</p>
           <div className="flex mt-6">
             <Button
               className="w-full"
@@ -368,9 +329,7 @@ export default function Home() {
                 clickShare();
               }}
             >
-              <span className="text-lg text-center px-1.5 py-1">
-                Copy results
-              </span>
+              <span className="text-lg text-center px-1.5 py-1">Copy results</span>
             </Button>
             <Button
               className="w-full"
@@ -401,29 +360,20 @@ export default function Home() {
               }}
               className="hidden text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
             >
-              <FontAwesomeIcon
-                icon={faFaceSurprise}
-                aria-label="Reveal answers"
-              />
+              <FontAwesomeIcon icon={faFaceSurprise} aria-label="Reveal answers" />
             </button>
             <Link
               href="/mobile"
               target="_blank"
               className="text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
             >
-              <FontAwesomeIcon
-                icon={faArrowCircleDown}
-                aria-label="Download app on Android"
-              />
+              <FontAwesomeIcon icon={faArrowCircleDown} aria-label="Download app on Android" />
             </Link>
             <button
               onClick={clickHowPlay}
               className="text-2xl bg-transparent text-blue-100 hover:text-blue-200 transition-all"
             >
-              <FontAwesomeIcon
-                icon={faCircleQuestion}
-                aria-label="How to play"
-              />
+              <FontAwesomeIcon icon={faCircleQuestion} aria-label="How to play" />
             </button>
             <button
               onClick={clickShare}
@@ -460,40 +410,19 @@ export default function Home() {
             setShareText("");
             setCurrentI(1);
 
-            let randomWord4 =
-              words4Array[Math.floor(Math.random() * words4Array.length)];
-            let randomWord5 =
-              words5Array[Math.floor(Math.random() * words5Array.length)];
-            while (
-              randomWord5.charAt(0) !=
-              randomWord4.charAt(randomWord4.length - 1)
-            )
-              randomWord5 =
-                words5Array[Math.floor(Math.random() * words5Array.length)];
-            let randomWord6 =
-              words6Array[Math.floor(Math.random() * words6Array.length)];
-            while (
-              randomWord6.charAt(0) !=
-              randomWord5.charAt(randomWord5.length - 1)
-            )
-              randomWord6 =
-                words6Array[Math.floor(Math.random() * words6Array.length)];
-            let randomWord7 =
-              words7Array[Math.floor(Math.random() * words7Array.length)];
-            while (
-              randomWord7.charAt(0) !=
-              randomWord6.charAt(randomWord6.length - 1)
-            )
-              randomWord7 =
-                words7Array[Math.floor(Math.random() * words7Array.length)];
-            let randomWord8 =
-              words8Array[Math.floor(Math.random() * words8Array.length)];
-            while (
-              randomWord8.charAt(0) !=
-              randomWord7.charAt(randomWord7.length - 1)
-            )
-              randomWord8 =
-                words8Array[Math.floor(Math.random() * words8Array.length)];
+            let randomWord4 = words4Array[Math.floor(Math.random() * words4Array.length)];
+            let randomWord5 = words5Array[Math.floor(Math.random() * words5Array.length)];
+            while (randomWord5.charAt(0) != randomWord4.charAt(randomWord4.length - 1))
+              randomWord5 = words5Array[Math.floor(Math.random() * words5Array.length)];
+            let randomWord6 = words6Array[Math.floor(Math.random() * words6Array.length)];
+            while (randomWord6.charAt(0) != randomWord5.charAt(randomWord5.length - 1))
+              randomWord6 = words6Array[Math.floor(Math.random() * words6Array.length)];
+            let randomWord7 = words7Array[Math.floor(Math.random() * words7Array.length)];
+            while (randomWord7.charAt(0) != randomWord6.charAt(randomWord6.length - 1))
+              randomWord7 = words7Array[Math.floor(Math.random() * words7Array.length)];
+            let randomWord8 = words8Array[Math.floor(Math.random() * words8Array.length)];
+            while (randomWord8.charAt(0) != randomWord7.charAt(randomWord7.length - 1))
+              randomWord8 = words8Array[Math.floor(Math.random() * words8Array.length)];
 
             setWord4Text(randomWord4);
             setWord5Text("_ _ _ _ _");
@@ -501,13 +430,7 @@ export default function Home() {
             setWord7Text("_ _ _ _ _ _ _");
             setWord8Text(randomWord8);
 
-            setSolvedWordsArray([
-              randomWord4,
-              randomWord5,
-              randomWord6,
-              randomWord7,
-              randomWord8,
-            ]);
+            setSolvedWordsArray([randomWord4, randomWord5, randomWord6, randomWord7, randomWord8]);
             setChangingSolvedWordsArray([
               randomWord4,
               randomWord5,
@@ -540,9 +463,7 @@ export default function Home() {
 
       <div className={`${keyboardVisible} absolute bottom-0 left-0 right-0`}>
         {/* warning */}
-        <div
-          className={`${warnVisible} flex justify-center items-center px-4 py-6 mx-auto`}
-        >
+        <div className={`${warnVisible} flex justify-center items-center px-4 py-6 mx-auto`}>
           <span className="w-full md:w-[24rem] text-base text-center bg-gray-200 text-black rounded-lg shadow-sm px-6 py-3">
             {warnText}
           </span>
@@ -578,9 +499,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "a");
               }}
-              className={`${
-                isThisInGivenLetters("a") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("a") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>a</span>
             </Button>
@@ -588,9 +507,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "b");
               }}
-              className={`${
-                isThisInGivenLetters("b") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("b") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>b</span>
             </Button>
@@ -598,9 +515,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "c");
               }}
-              className={`${
-                isThisInGivenLetters("c") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("c") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>c</span>
             </Button>
@@ -608,9 +523,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "d");
               }}
-              className={`${
-                isThisInGivenLetters("d") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("d") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>d</span>
             </Button>
@@ -618,9 +531,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "e");
               }}
-              className={`${
-                isThisInGivenLetters("e") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("e") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>e</span>
             </Button>
@@ -628,9 +539,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "f");
               }}
-              className={`${
-                isThisInGivenLetters("f") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("f") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>f</span>
             </Button>
@@ -638,9 +547,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "g");
               }}
-              className={`${
-                isThisInGivenLetters("g") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("g") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>g</span>
             </Button>
@@ -648,9 +555,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "h");
               }}
-              className={`${
-                isThisInGivenLetters("h") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("h") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>h</span>
             </Button>
@@ -658,9 +563,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "i");
               }}
-              className={`${
-                isThisInGivenLetters("i") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("i") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>i</span>
             </Button>
@@ -668,9 +571,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "j");
               }}
-              className={`${
-                isThisInGivenLetters("j") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("j") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>j</span>
             </Button>
@@ -678,9 +579,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "k");
               }}
-              className={`${
-                isThisInGivenLetters("k") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("k") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>k</span>
             </Button>
@@ -688,9 +587,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "l");
               }}
-              className={`${
-                isThisInGivenLetters("l") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("l") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>l</span>
             </Button>
@@ -698,9 +595,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "m");
               }}
-              className={`${
-                isThisInGivenLetters("m") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("m") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>m</span>
             </Button>
@@ -708,9 +603,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "n");
               }}
-              className={`${
-                isThisInGivenLetters("n") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("n") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>n</span>
             </Button>
@@ -718,9 +611,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "o");
               }}
-              className={`${
-                isThisInGivenLetters("o") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("o") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>o</span>
             </Button>
@@ -728,9 +619,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "p");
               }}
-              className={`${
-                isThisInGivenLetters("p") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("p") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>p</span>
             </Button>
@@ -738,9 +627,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "q");
               }}
-              className={`${
-                isThisInGivenLetters("q") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("q") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>q</span>
             </Button>
@@ -748,9 +635,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "r");
               }}
-              className={`${
-                isThisInGivenLetters("r") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("r") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>r</span>
             </Button>
@@ -758,9 +643,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "s");
               }}
-              className={`${
-                isThisInGivenLetters("s") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("s") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>s</span>
             </Button>
@@ -768,9 +651,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "t");
               }}
-              className={`${
-                isThisInGivenLetters("t") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("t") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>t</span>
             </Button>
@@ -778,9 +659,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "u");
               }}
-              className={`${
-                isThisInGivenLetters("u") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("u") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>u</span>
             </Button>
@@ -788,9 +667,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "v");
               }}
-              className={`${
-                isThisInGivenLetters("v") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("v") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>v</span>
             </Button>
@@ -798,9 +675,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "w");
               }}
-              className={`${
-                isThisInGivenLetters("w") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("w") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>w</span>
             </Button>
@@ -808,9 +683,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "x");
               }}
-              className={`${
-                isThisInGivenLetters("x") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("x") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>x</span>
             </Button>
@@ -818,9 +691,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "y");
               }}
-              className={`${
-                isThisInGivenLetters("y") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("y") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className={`text-2xl`}>y</span>
             </Button>
@@ -828,9 +699,7 @@ export default function Home() {
               onClick={() => {
                 setInputValue(inputValue + "z");
               }}
-              className={`${
-                isThisInGivenLetters("z") ? "" : "hidden"
-              } w-9 h-11 pt-1.5`}
+              className={`${isThisInGivenLetters("z") ? "" : "hidden"} w-9 h-11 pt-1.5`}
             >
               <span className="text-2xl">z</span>
             </Button>
@@ -855,17 +724,12 @@ export default function Home() {
             >
               <FontAwesomeIcon icon={faDeleteLeft} className="mr-2" />
               <span className="text-lg">
-                {inputValue.length < 1 &&
-                (currentI == 2 || currentI == 3 || currentI == 4)
+                {inputValue.length < 1 && (currentI == 2 || currentI == 3 || currentI == 4)
                   ? "Previous word"
                   : "Backspace"}
               </span>
             </Button>
-            <Button
-              onClick={addWord}
-              className="items-center w-full"
-              ref={enterRef}
-            >
+            <Button onClick={addWord} className="items-center w-full" ref={enterRef}>
               <span className="text-lg">Enter</span>
               <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </Button>
