@@ -33,7 +33,7 @@ export default function Home() {
     <meta property="og:title" content="Linked" />
     <meta
       property="og:description"
-      content="A fun and simple word puzzle game to test your brain."
+      content="Link five words together in a fun and simple word game."
     />
     <meta name="theme-color" content="#3b82f6" />
     <meta property="og:image" content="icon-transparent.png" />
